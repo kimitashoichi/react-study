@@ -22,9 +22,11 @@ import { NotUseMemo, UseMemoComponent } from "./use-memo-callback-example/use-me
 // useMemo Sample (component render)
 import { UseMemoRenderComponent } from "./use-memo-callback-example/use-memo/UseMemoExample2";
 
+import AppComponent from "./custome-hook/costomeHookApp";
+
 ReactDOM.render(
   <React.StrictMode>
-    <UseMemoRenderComponent />
+    <AppComponent />
   </React.StrictMode>,
   document.getElementById('root')
 );
