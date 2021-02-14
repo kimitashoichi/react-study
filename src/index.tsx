@@ -44,12 +44,16 @@ import UseLocationRouterApp from "./react-router-dom/ReactRouterUseLocation";
 
 import UseHistoryApp from "./react-router-dom/ReactRouterHistoryApi";
 
+// hook form
+import FormExample from "./react-hook-form/NastedValueExample";
+import HookFormExample from "./react-hook-form/HookFormExample";
+
 ReactDOM.render(
   <React.StrictMode>
     {/* <ErrorBoundary FallbackComponent={errorUi} onReset={() => console.log("Error")}>
       <ErrorExample />
     </ErrorBoundary> */}
-    <UseHistoryApp />
+    <HookFormExample />
   </React.StrictMode>,
   document.getElementById('root')
 );
