@@ -1,6 +1,8 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { any, string } from "prop-types";
+import React, { useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
+import Select from "react-select";
+import Input from "@material-ui/core/Input";
+import { Input as InputField } from "antd";
 
 const HookFormExample: React.FC = () => {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -63,4 +65,66 @@ const ValidateForm: React.FC = () => {
   )
 }
 
-export default ValidateForm;
+const UseMaterialUiForm: React.FC = () => {
+  const {control, handleSubmit} = useForm();
+  
+  const onSubmit = (data: any) => {
+    console.log(data);
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="firstName"
+        control={control}
+        defaultValue=""
+        render={({ onChange, value }) =>
+          <input onChange={onChange} value={value} />
+        }
+      />
+      <Controller
+        name="iceCreamType"
+        control={control}
+        options={[
+          { value: "chocolate", label: "Chocolate" },
+          { value: "strawberry", label: "Strawberry" },
+          { value: "vanilla", label: "Vanilla" }
+        ]}
+        as={Select}
+      />
+      <input type="submit" />
+    </form>
+  )
+}
+
+const UseEffectForm: React.FC = () => {
+  const { register, handleSubmit, setValue } = useForm();
+  const onSubmit = (data: any) => {
+    console.log(data);
+  }
+
+  const handleChange = (e: any) => {
+    setValue("AntdInput", e.target.value);
+  }
+
+  const handleAnother = (e: any) => {
+    setValue("AntdInput1", e.target.value);
+  }
+
+  useEffect(() => {
+    register("AntdInput");
+    register("AntdInput1");
+  }, [register])
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <InputField name="name" onChange={handleChange} />
+      <InputField name="other" onChange={handleAnother} />
+      <input type="submit" />
+    </form>
+  )
+}
+
+ 
+
+export default UseEffectForm;
