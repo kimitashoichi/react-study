@@ -36,11 +36,14 @@ import Page from "./portals/stack-modal-sample/AppModalIndex";
 // Error Boundary Sample
 import {ErrorExample, errorUi} from "./error-boundary/ErrorBoundaryExample";
 
+import ExampleRenderProps from "./render-props/RenderPropsExample";
+
 ReactDOM.render(
   <React.StrictMode>
-    <ErrorBoundary FallbackComponent={errorUi} onReset={() => console.log("Error")}>
+    {/* <ErrorBoundary FallbackComponent={errorUi} onReset={() => console.log("Error")}>
       <ErrorExample />
-    </ErrorBoundary>
+    </ErrorBoundary> */}
+    <ExampleRenderProps />
   </React.StrictMode>,
   document.getElementById('root')
 );
