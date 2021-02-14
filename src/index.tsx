@@ -22,11 +22,18 @@ import { NotUseMemo, UseMemoComponent } from "./use-memo-callback-example/use-me
 // useMemo Sample (component render)
 import { UseMemoRenderComponent } from "./use-memo-callback-example/use-memo/UseMemoExample2";
 
+// custom Hools Sample
 import AppComponent from "./custome-hook/costomeHookApp";
+
+// Portals Sample
+import { Root } from "./portals/PortalExample1";
+
+// Portal Stack Modal Sample
+import Page from "./portals/stack-modal-sample/AppModalIndex";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppComponent />
+    <Page />
   </React.StrictMode>,
   document.getElementById('root')
 );
