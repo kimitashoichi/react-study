@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ErrorBoundary } from "react-error-boundary";
+
 import LoadingSample from "./loading-sample/Loading";
 import AppContext from "./use-context-example/AppContext";
 import UseReducerA from "./use-reducer-example/ReducerA";
@@ -31,9 +33,14 @@ import { Root } from "./portals/PortalExample1";
 // Portal Stack Modal Sample
 import Page from "./portals/stack-modal-sample/AppModalIndex";
 
+// Error Boundary Sample
+import {ErrorExample, errorUi} from "./error-boundary/ErrorBoundaryExample";
+
 ReactDOM.render(
   <React.StrictMode>
-    <Page />
+    <ErrorBoundary FallbackComponent={errorUi} onReset={() => console.log("Error")}>
+      <ErrorExample />
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
 );
