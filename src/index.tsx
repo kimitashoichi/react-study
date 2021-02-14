@@ -38,12 +38,18 @@ import {ErrorExample, errorUi} from "./error-boundary/ErrorBoundaryExample";
 
 import ExampleRenderProps from "./render-props/RenderPropsExample";
 
+import ParamsRouterApp from "./react-router-dom/ReactRouterUseParams";
+
+import UseLocationRouterApp from "./react-router-dom/ReactRouterUseLocation";
+
+import UseHistoryApp from "./react-router-dom/ReactRouterHistoryApi";
+
 ReactDOM.render(
   <React.StrictMode>
     {/* <ErrorBoundary FallbackComponent={errorUi} onReset={() => console.log("Error")}>
       <ErrorExample />
     </ErrorBoundary> */}
-    <ExampleRenderProps />
+    <UseHistoryApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
