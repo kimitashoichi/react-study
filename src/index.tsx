@@ -48,13 +48,16 @@ import UseHistoryApp from "./react-router-dom/ReactRouterHistoryApi";
 import FormExample from "./react-hook-form/NastedValueExample";
 import HookFormExample from "./react-hook-form/HookFormExample";
 
+// google map api sample
+import MyComponent from "./google-map-api/MapSample";
+
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <ErrorBoundary FallbackComponent={errorUi} onReset={() => console.log("Error")}>
       <ErrorExample />
     </ErrorBoundary> */}
-    <FormExample />
+    <MyComponent />
   </React.StrictMode>,
   document.getElementById('root')
 );
