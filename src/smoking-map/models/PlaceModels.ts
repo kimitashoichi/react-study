@@ -1,7 +1,9 @@
 // 喫煙所モデル
 export interface SmokingArea {
-  lat: number; // 緯度
-  lng: number; // 経度
+  latLng: {
+    lat: number; // 緯度
+    lng: number; // 経度
+  }
   smokingAreaName: string; // 喫煙所名
   smokingAreaAddress: string; // 住所
   smokingAreaTokyo23wards: string; // 存在している東京の区
@@ -28,7 +30,9 @@ export interface StoreAttributes {
   wifi: boolean; // Wifiがあるかどうか
 }
 
-export const  smokingAreaAampleData: SmokingArea[] = [
+
+// ダメなデータ:緯度経度がこの形式だとGoogleマップに渡せない
+export const  smokingAreaAampleData = [
   {
     lat: 35.66166309438292,
     lng: 139.69737881103293,
@@ -51,4 +55,39 @@ export const  smokingAreaAampleData: SmokingArea[] = [
     smokingAreaTokyo23wards: "渋谷区",
     isExist: true
   }
-] 
+];
+
+// 良いデータ例:Googleマップに緯度経度を渡すことができる
+export const sampleSmokimgAreas: SmokingArea[] = [
+  {
+    latLng: {
+      lat: 35.67177681207955,
+      lng: 139.70291752637328,
+    },
+    smokingAreaName: "原宿駅前",
+    smokingAreaAddress: "原宿駅の住所を表示する",
+    smokingAreaTokyo23wards: "渋谷区",
+    isExist: true,
+    descriptionOfSmokingArea: "原宿駅前にある喫煙所です。"
+  },{
+    latLng: {
+      lat: 35.67064392349695,
+      lng: 139.70324078404312,
+    },
+    smokingAreaName: "喫煙所A",
+    smokingAreaAddress: "喫煙所Aの住所を表示する",
+    smokingAreaTokyo23wards: "渋谷区",
+    isExist: true,
+    descriptionOfSmokingArea: "喫煙所Aです"
+  },{
+    latLng: {
+      lat: 35.669211701868704,
+      lng: 139.70417878219814,
+    },
+    smokingAreaName: "喫煙所B",
+    smokingAreaAddress: "喫煙所Bの住所を表示する",
+    smokingAreaTokyo23wards: "渋谷区",
+    isExist: true,
+    descriptionOfSmokingArea: "喫煙所Bです"
+  },
+];

@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 
 import { SearchContext } from "./HeaderComponent";
+import { SmokingArea, sampleSmokimgAreas } from "../models/PlaceModels";
 
-const API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY
+const API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
 const containerStyle = {
   height: "500px",
   width: "500px",
@@ -14,21 +15,12 @@ const center = {
   lng: 139.7016357975378,
 };
 
-const sampleData = [{
-    lat:35.67064392349695,
-    lng:139.70324078404312
-  },{
-    lat: 35.669211701868704,
-    lng: 139.70417878219814
-  },{
-    lat: 35.67177681207955,
-    lng: 139.70291752637328
-  }
-]
+// 検討:各コンポーネントを別ファイルに切り出すかどうか
+// TODO:再レンダリングされているか調査
+// されているようだったら子コンポーネントをメモ化する
 
 const MapComponent: React.FC = () => {
   const [display, setDisplay] = useState(false);
-  const [info, setInfo] = useState();
   const searchWord = useContext(SearchContext);
 
   const handleOnDisplay = () => {
@@ -38,39 +30,74 @@ const MapComponent: React.FC = () => {
 
   // ジオコーディングはカスタムフックで対応したい
 
-  const displayInfoWIndow = (position: any) => {
-    console.log(position);
-    setInfo(position);
-  };
-
   return (
-    <LoadScript googleMapsApiKey={API_KEY ? API_KEY : ""} >
+    <LoadScript googleMapsApiKey={API_KEY as string} >
       <button onClick={() => handleOnDisplay()} >change display</button>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         zoom={16}
       >
-        { sampleData.map((positon) => {
+        { sampleSmokimgAreas.map((positon) => {
           return (
-            <Marker
-              key={positon.lat}
-              position={positon}
-              onClick={() => displayInfoWIndow(positon)}>
-            </Marker>
+            <MarkerComponent
+              key={positon.latLng.lat}
+              position={positon}/>
           )
         })}
-
-        { info ? (
-          <InfoWindow
-            position={info}
-            onCloseClick={() => setInfo(undefined)}>
-            <h1>1</h1>
-          </InfoWindow>
-        ) : null }
       </GoogleMap>
     </LoadScript>
   );
 };
+
+interface Position {
+  position: SmokingArea
+}
+
+const MarkerComponent: React.FC<Position> = ({
+  position
+}) => {
+  const [info, setInfo] = useState<SmokingArea>();
+  const displayInfoWIndow = (position: SmokingArea) => {
+    console.log(position);
+    setInfo(position);
+  };
+
+  return (
+    <>
+      <Marker
+        key={position.latLng.lat}
+        position={position.latLng}
+        onClick={() => displayInfoWIndow(position)}>
+      </Marker>
+
+      { info ?
+        <InfoWindowComponent info={info} setInfo={setInfo}/>
+      : null }
+    </>
+  )
+}
+
+interface info {
+  info: SmokingArea;
+  setInfo: (e: any) => void;
+}
+
+const InfoWindowComponent: React.FC<info> = ({
+  info,
+  setInfo
+}) => {
+  return (
+    <InfoWindow
+      position={info.latLng}
+      onCloseClick={() => setInfo(undefined)}>
+        <div>
+          <p>{info.smokingAreaName}</p>
+          <p>住所：{info.smokingAreaAddress}</p>
+          <p>備考：{info.descriptionOfSmokingArea}</p>
+        </div>
+    </InfoWindow>
+  )
+}
 
 export default MapComponent;

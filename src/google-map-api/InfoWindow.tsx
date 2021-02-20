@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Marker, InfoWindow } from "@react-google-maps/api";
 
-import { smokingAreaAampleData, SmokingArea } from "./PlaceModels";
+import { smokingAreaAampleData, SmokingArea } from "../smoking-map/models/PlaceModels";
 
 export default function PlaceInfo() {
   const [selected, setSelected] = useState<SmokingArea>();
