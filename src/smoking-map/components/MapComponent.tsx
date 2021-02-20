@@ -3,6 +3,7 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/ap
 
 import { SearchContext } from "./HeaderComponent";
 
+const API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY
 const containerStyle = {
   height: "500px",
   width: "500px",
@@ -43,7 +44,7 @@ const MapComponent: React.FC = () => {
   };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyALwYvWVcmWiyaMLydjlVlBWh1-Y276oY8">
+    <LoadScript googleMapsApiKey={API_KEY ? API_KEY : ""} >
       <button onClick={() => handleOnDisplay()} >change display</button>
       <GoogleMap
         mapContainerStyle={containerStyle}
