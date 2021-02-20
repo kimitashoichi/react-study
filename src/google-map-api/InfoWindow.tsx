@@ -7,7 +7,6 @@ export default function PlaceInfo() {
   const [selected, setSelected] = useState<SmokingArea>();
   const [display, setDisplay] = useState(false);
 
-
   // 強制的にイベントを発生させているが、親コンポーネントの何らかのイベントを受け取った時に表示されるようにしたい
   useEffect(() => {
     setTimeout(() => {

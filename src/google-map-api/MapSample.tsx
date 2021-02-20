@@ -11,8 +11,8 @@ const createContent = (text: string) => {
 }
 
 const containerStyle = {
-  height: "300px",
-  width: "300px",
+  height: "500px",
+  width: "500px",
 };
 
 const center = {
@@ -28,7 +28,7 @@ const MyComponent: React.FC = () => {
   }
 
   return (
-    <LoadScript googleMapsApiKey="api-key">
+    <LoadScript googleMapsApiKey="AIzaSyALwYvWVcmWiyaMLydjlVlBWh1-Y276oY8">
       {/* <button onClick={() => handleOnDisplay()} >change display</button> */}
       <GoogleMap
         mapContainerStyle={containerStyle}

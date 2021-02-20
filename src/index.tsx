@@ -51,13 +51,19 @@ import HookFormExample from "./react-hook-form/HookFormExample";
 // google map api sample
 import MyComponent from "./google-map-api/MapSample";
 
+// animation sample
+import { TransitionPage } from "./react-transition-group/ReactAnimationSample";
+
+
+import HeaderComponent from "./smoking-map/components/HeaderComponent";
+
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <ErrorBoundary FallbackComponent={errorUi} onReset={() => console.log("Error")}>
       <ErrorExample />
     </ErrorBoundary> */}
-    <MyComponent />
+    <HeaderComponent />
   </React.StrictMode>,
   document.getElementById('root')
 );
